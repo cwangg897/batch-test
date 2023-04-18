@@ -2,8 +2,10 @@ package com.example.batchtest.domain;
 
 import com.example.batchtest.domain.common.BaseTimeEntity;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -11,6 +13,7 @@ import java.math.BigDecimal;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@DynamicInsert
 public class Member extends BaseTimeEntity {
 
     @Id
@@ -23,6 +26,12 @@ public class Member extends BaseTimeEntity {
     @Column(name = "amount")
     private BigDecimal amount;
 
+
+    @Builder
+    public Member(String name, BigDecimal amount){
+        this.name = name;
+        this.amount = amount;
+    }
 
 
 
